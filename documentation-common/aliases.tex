@@ -1,0 +1,56 @@
+%% Alias Commands
+\newcommand{\inR}{\in\mathbb{R}}
+\newcommand{\radps}{\si[per-mode=symbol]{\radian\per\second}}
+\newcommand{\mps}{\si[per-mode=symbol]{\meter\per\second}}
+\newcommand{\figref}[1]{Fig. \ref{#1}}
+\newcommand{\secref}[1]{Section \ref{#1}}
+\newcommand{\cppinline}[1]{\lstinline[language=C++]{#1}}
+\newcommand{\matlabinline}[1]{\lstinline[language=Matlab]{#1}}
+\newcommand{\pythoninline}[1]{\lstinline[language=Python]{#1}}
+\newcommand{\tvfill}{\null\vfill} % \vfill command for top of page
+\newcommand{\bvfill}{\null\vfill} % \vfill command for bottom of page
+\renewcommand{\footrulewidth}{0.5pt}
+
+%% Title with Horizon Logo
+\newcommand{\fancytitle}[2]{
+    \title{
+        \includegraphics[height=1.5cm]{documentation-common/horizon_logo.png}\\[2ex]
+        #1
+    }
+    \pagestyle{fancy}
+    \fancyhf{}
+    \rhead{#2}
+    \lhead{\includegraphics[width=3cm]{documentation-common/horizon_logo.png}}
+    \lfoot{\emph{Internal Use Only}}
+    \rfoot{\thepage}
+}
+
+%% Shaded Quote Block
+\let\oldquote=\quote
+\let\endoldquote=\endquote
+\colorlet{shadecolor}{blue!10}
+\renewenvironment{quote}{\begin{shaded*}\begin{oldquote}}{\end{oldquote}\end{shaded*}}
+
+%% Title Page ith Horizon Logo
+\newcommand\horizontitlepage[1][wTOC]{
+    \clearpage
+    \maketitle
+    \IfStrEqCase{#1}{%
+        {wTOC}{
+            \vfill
+            \tableofcontents
+            \thispagestyle{empty}
+        }%
+        {woTOC}{
+            \thispagestyle{empty}
+            \pagebreak 
+            \tableofcontents
+        }%
+        {noTOC}{
+            \thispagestyle{empty}
+        }%
+    }[%
+        \PackageError{horizontitlepage}{Invalid optional argument!}{Either use 'wTOC' (default) to include the table of contents on the title page, 'woTOC' to place the table of contents on a new page, or 'noTOC' to only include the title page (no table of contents).}
+    ]%
+    \pagebreak
+}
