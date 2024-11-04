@@ -1,3 +1,4 @@
 [submodule "documentation-common"]
 	path = documentation-common
-	url = git@github.com:Horizon-Surgical-Systems/documentation-common.git
+	url = git@github.com:danhagen/documenation-common.git
+
